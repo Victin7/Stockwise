@@ -1,5 +1,7 @@
 # StockWise
 
+**Demonstração online:** https://victin7.github.io/Stockwise/
+
 Plataforma de gestão de estoque para pequenas e médias empresas, construída como projeto de portfólio. Funciona inteiramente no navegador, sem backend e sem banco de dados: os dados ficam no `localStorage`, atrás de uma camada de persistência que pode ser trocada no futuro.
 
 O objetivo é mostrar um produto SaaS completo e coerente: regras de negócio consistentes, indicadores calculados a partir dos mesmos dados exibidos nas demais telas, interface responsiva com tema claro e escuro, e código organizado e testado.
@@ -89,7 +91,15 @@ npm run preview    # serve o build de produção
 npm run typecheck  # apenas a verificação de tipos
 ```
 
-Não há variáveis de ambiente.
+Não há variáveis de ambiente obrigatórias. `VITE_BASE_PATH` define o caminho base do build (padrão `/`); o deploy usa `/Stockwise/`.
+
+## Deploy no GitHub Pages
+
+O workflow `.github/workflows/deploy.yml` roda a cada push no `main`: instala as dependências, executa os testes, gera o build com o caminho base do repositório e publica no GitHub Pages. Um push com testes falhando não é publicado.
+
+Como é uma SPA, o workflow copia `index.html` para `404.html`, permitindo abrir qualquer rota (por exemplo, `/Stockwise/produtos`) diretamente ou recarregar a página.
+
+Para ativar em um fork: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
 ## Testes
 
