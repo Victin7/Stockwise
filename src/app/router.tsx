@@ -32,6 +32,9 @@ export const routes: RouteObject[] = [
   },
 ]
 
+/** Base do site sem a barra final (ex.: "/Stockwise"), para funcionar em subcaminhos como o GitHub Pages. */
+export const ROUTER_BASENAME = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
+
 export function createAppRouter() {
-  return createBrowserRouter(routes)
+  return createBrowserRouter(routes, { basename: ROUTER_BASENAME })
 }
